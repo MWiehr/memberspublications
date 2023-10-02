@@ -1,0 +1,8 @@
+---
+title: "zotero_to_word"
+bib: "LMUOpenScienceCenter_MembersPublications.bib"
+output:
+  word_document: default
+---
+
+@abele-brehmAttitudesOpenScience2019
