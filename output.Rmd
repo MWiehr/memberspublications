@@ -4,3 +4,13 @@ output:
   word_document: default
 ---
 
+Plan:
+1. Import the better bibtex file
+```{r}
+install.packages("RefManageR")
+library(RefManageR)
+bib_file <- ReadBib("LMUOpenScienceCenter_MembersPublications.bib")
+```
+
+2. Filter For "Tags" #keyword = "m_true" OR "g_true" #papers perceived as meeting the criteria that the raters m or g deemed fitting
+3. Use that list to make a references list
