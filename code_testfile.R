@@ -21,28 +21,6 @@ bib_data <- convert2df("LMUOpenScienceCenter_MembersPublications.bib")
 
 ################################################################################
 
-# Install and load the 'bibtex' package if not already installed
-if (!requireNamespace("bibtex", quietly = TRUE)) {
-  install.packages("bibtex")
-}
-
-# Load the 'bibtex' package
-library(bibtex)
-
-# Specify the path to your BibTeX file
-bibtex_file <- "LMUOpenScienceCenter_MembersPublications.bib"
-
-# Read the BibTeX file
-bib_data <- read.bib(bibtex_file)
-
-# Create a text file and write the titles and keys to it
-output_file <- "output.txt"
-writeLines(paste(bib_data$entryTags$title, "(", names(bib_data$entryTags), ")", sep = " "), output_file)
-
-cat("Conversion completed. Results written to", output_file, "\n")
-
-################################################################################
-
 # Load the jsonlite library
 library(jsonlite)
 # Load the data and reduce it to the items
@@ -64,19 +42,4 @@ for (item in items) {
 
 
 
-
-
-
-number_not_rated <- 0
-list_meets-criteria
-
-
-# Filter items based on the "open science" tag
-filtered_items <- items[sapply(items$tags, function(tag) any(tag$tag == "open science")), ]
-
-# Extract the citationKeys from the filtered items
-citationKeys <- filtered_items$citationKey
-
-# Print the citationKeys
-print(citationKeys)
 
