@@ -25,13 +25,17 @@ items <- json_data$items
 # 2. Filter For "Tags" "m_true" OR "g_true" #papers perceived as meeting the criteria that the raters m or g deemed fitting
 ```{r}
 #Going through all the papers we will look at all tags and check if they are m_true or g_true
-citation_keys <- c()
+citation_keys <- c() # getting the citation IDs for in text use
+i_true <- c() # getting a list of all the references
+i = 0
 for (item in items) {
   tags <- item$tags
+  i <- i + 1
   for (tag in tags) {
-    if ("m_true" == tag | "g_true" == tag) {
+    if ("open science" == tag | "g_true" == tag) {
       # If it is, add the corresponding 'citationKey' to 'citation_keys'
       citation_keys <- c(citation_keys, item$citationKey)
+      i_true <- c(i_true, i)
     }
   }
 }
@@ -42,3 +46,8 @@ citation_keys <- unique(citation_keys)
 ```
 
 # 3. Use that list to make a references list
+```{r}
+#easy way without special formatting
+bib_file[i_true]
+```
+

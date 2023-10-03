@@ -8,15 +8,14 @@ if (!requireNamespace("bibliometrix", quietly = TRUE)) {
 
 ################################################################################
 
-#Setup
+#Print the references:
 
 #This results in a list of citations that can be easily accessed in the list -> possible use to make the names of our members bold
 library(RefManageR)
 bib_file <- ReadBib("LMUOpenScienceCenter_MembersPublications.bib")
+bib_file[i_true]
+#bib_file[i_true] -> results in the right citation
 
-#loading the bib file in its complete format
-library(bibliometrix)
-bib_data <- convert2df("LMUOpenScienceCenter_MembersPublications.bib")
 
 
 ################################################################################
@@ -30,12 +29,16 @@ items <- json_data$items
 
 #Going through all the papers we will look at all tags and check if they are m_true or g_true
 citation_keys <- c()
+i_true <- c()
+i = -1
 for (item in items) {
   tags <- item$tags
+  i <- i + 1
   for (tag in tags) {
-    if ("m_true" == tag | "g_true" == tag) {
+    if ("open science" == tag | "g_true" == tag) {
       # If it is, add the corresponding 'citationKey' to 'citation_keys'
       citation_keys <- c(citation_keys, item$citationKey)
+      i_true <- c(i_true, i)
     }
   }
 }
