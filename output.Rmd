@@ -5,12 +5,40 @@ output:
 ---
 
 Plan:
-1. Import the better bibtex file
+# 1. Import the bibtex and json file for the papers
 ```{r}
-install.packages("RefManageR")
+#for citing:
+if (!requireNamespace("RefManageR", quietly = TRUE)) {
+  install.packages("RefManageR") }
 library(RefManageR)
 bib_file <- ReadBib("LMUOpenScienceCenter_MembersPublications.bib")
+
+
+# For filtering:
+if (!requireNamespace("jsonlite", quietly = TRUE)) {
+  install.packages("jsonlite") }
+library(jsonlite)
+json_data <- read_json("LMUOpenScienceCenter_MembersPublications_Better.json")
+items <- json_data$items
 ```
 
-2. Filter For "Tags" #keyword = "m_true" OR "g_true" #papers perceived as meeting the criteria that the raters m or g deemed fitting
-3. Use that list to make a references list
+# 2. Filter For "Tags" "m_true" OR "g_true" #papers perceived as meeting the criteria that the raters m or g deemed fitting
+```{r}
+#Going through all the papers we will look at all tags and check if they are m_true or g_true
+citation_keys <- c()
+for (item in items) {
+  tags <- item$tags
+  for (tag in tags) {
+    if ("m_true" == tag | "g_true" == tag) {
+      # If it is, add the corresponding 'citationKey' to 'citation_keys'
+      citation_keys <- c(citation_keys, item$citationKey)
+    }
+  }
+}
+```
+2.1 Deleting citation keys that are double
+```{r}
+citation_keys <- unique(citation_keys)
+```
+
+# 3. Use that list to make a references list
