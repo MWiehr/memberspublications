@@ -32,6 +32,7 @@ for (item in items) {
   tags <- item$tags
   i <- i + 1
   for (tag in tags) {
+    #change open science to m_true once the rating is in no longer in testing phase
     if ("open science" == tag | "g_true" == tag) {
       # If it is, add the corresponding 'citationKey' to 'citation_keys'
       citation_keys <- c(citation_keys, item$citationKey)

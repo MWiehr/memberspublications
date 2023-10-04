@@ -16,6 +16,21 @@ bib_file <- ReadBib("LMUOpenScienceCenter_MembersPublications.bib")
 bib_file[i_true]
 #bib_file[i_true] -> results in the right citation
 
+################################################################################
+
+#Work in progress on the boldedversion
+
+#Idea: use the jason to  manually add all the strings together forming the reference 
+#Possible Problems: There are different kinds of references needed
+
+#1 For i in i_true: Add a reference 
+references <- c()
+for (i in i_true) { 
+  #reference <- iterate through allcreator in creators if firstname lastname pair not in our memberslist add creator[firstname] + ". " + creator[lastname] + ", " else name <- creator[firstname] + ". " + creator[lastname] + ", "  add "**" + name + "**" 
+  #then add the title to the str.  + "In:" + publicationTitle + "Doi:" + DOI
+  
+  references <- c(references, reference)
+}
 
 
 ################################################################################
