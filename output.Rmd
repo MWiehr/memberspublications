@@ -8,6 +8,7 @@ Plan:
 # 1. Import the bibtex and json file for the papers
 ```{r}
 #for citing:
+#possibly not needed after making the reference on our own
 if (!requireNamespace("RefManageR", quietly = TRUE)) {
   install.packages("RefManageR") }
 library(RefManageR)
@@ -26,7 +27,7 @@ items <- json_data$items
 ```{r}
 #Going through all the papers we will look at all tags and check if they are m_true or g_true
 citation_keys <- c() # getting the citation IDs for in text use
-i_true <- c() # getting a list of all the references
+i_true <- c() # getting a list of all the references 
 i = 0
 for (item in items) {
   tags <- item$tags
